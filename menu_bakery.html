@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIOTF HOUSE</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="Script/style.css">
+</head>
+<body>
+
+  
+    
+    <!-- =========== HEADER ===========-->
+    <header>
+        <div class="sukien">
+            <h1>MUA 1 TẶNG 1 CÒN: <span id="countdown"></h1>
+        </div>
+        
+        <a href="#" class="logo">
+            <img src="Image/logo/logo_den.PNG" alt="">
+        </a>
+       
+
+        <nav class="navbar">
+            <ul>
+                <li><a class="active" href="trangchu.html">TRANG CHỦ</a></li>
+                <li><a href="banchay.html">BÁN CHẠY</a></li>
+                <li class="dropdown"><a  href="menu_thucuong.html" class="dropmenu">THỰC ĐƠN</a>
+                    <div class="dropdown-content">
+                        <a href="menu_thucuong.html">THỨC UỐNG</a>
+                        <a href="menu_bakery.html">BAKERY</a>
+                        <a href="menu_pizza.html">PIZZA</a>
+                    </div>
+                </li>
+                <li><a href="datban.html">ĐẶT BÀN</a></li>
+                <li><a href="vechungtoi.html">VỀ CHÚNG TÔI</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="#" class="fas fa-user" id="login-btn"></a>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart" id="shopping-cart"></a>
+            <i class="fas fa-bars" id="menu-bars"></i>
+
+        </div>
+
+        <!-- THANH TÌM KIẾM -->
+        <form action="" class="search-form">    
+            <input type="search" id="search-box" class="box" placeholder="Tìm kiếm...">
+            <label for="search-box" class="fas fa-search"></label> 
+        </form> 
+
+        <!-- ĐĂNG NHẬP -->
+        <form action="" class="login-form"> 
+            <h3>ĐĂNG NHẬP</h3>   
+            <input type="tel"  class="box" id="tel-dn" placeholder="Số điện thoại">
+            <input type="password"  class="box" id="password-dn" placeholder="Mật khẩu">
+            <p>Quên mật khẩu? <a href="#quenmatkhau" id="show-qmk"> Đặt lại mật khẩu </a></p>
+            <p>Bạn chưa có tài khoản? <a href="#dangky" id="show-dangky"> Đăng ký </a></p>
+            <input type="submit" value="Đăng nhập" class="btn" onclick="return KiemtraThongTinDangNhap()">
+        </form> 
+
+        <!-- ĐĂNG KÝ -->
+        <form action="" class="dangky" id="dangky">
+            <i class="fa-solid fa-xmark" id="fa-xmark_DK"></i>
+            <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
+            
+            <input type="text" id="username-dk" name="username-dk" required placeholder="Họ và tên">
+
+            <!-- <select id="gender" name="gender" placeholder="Giới tính:">
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+                <option value="other">Khác</option>
+            </select> -->
+            <input type="email-dk" id="email-dk" name="email-dk" required placeholder="Địa chỉ email">
+            <input type="tel" id="tel-dk" name="tel-dk" required placeholder="Số điện thoại">
+            <input type="password-dk" id="password-dk" name="password-dk" required placeholder="Nhập mật khẩu">
+            <input type="password1-dk" id="password1-dk" name="password1-dk" required placeholder="Nhập lại mật khẩu">
+            <div class="dieukhoan">
+                <input type="checkbox" id="checkboxDk1"><label>Tôi đồng ý với các điều khoản của <a href="dieukhoan.html">HIOTF HOUSE</a></label>
+            </div>
+            <button type="submit" class="btn" onclick="return KiemTraThongTinDangKy()">Đăng ký</button>
+        </form>
+        <!-- QUEN MAT KHAU -->
+        <form action="" class="quenmatkhau" id="quenmatkhau">
+            <i class="fa-solid fa-xmark" id="fa-xmark_QMK"></i>
+            <h3>LẤY LẠI MẬT KHẨU</h3>
+            <p>Chúng tôi sẽ gửi mật khẩu mới cho số điện thoại bên dưới</p>
+            <input type="tel-qmk" name="" id="tel-qmk" placeholder="Số điện thoại bạn đã đăng ký">
+            <button type="submit" class="btn" onclick="return KiemTraThongTinDatLaiMatKhau()">Đăng ký</button>
+        </form>
+
+
+
+
+        <!-- GIỎ HÀNG -->
+        <form action="" class="giohang" id="giohang">
+            <h3>GIỎ HÀNG</h3>
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/banhmi.png" alt="">
+                    </div>
+                    <div class="name">
+                        BÁNH MÌ
+                    </div>
+                    <div class="totalPrice">
+                        25.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/cf_den.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Cà Phê Đen
+                    </div>
+                    <div class="totalPrice">
+                        15.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/hamberger_mini.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Hamburger mini
+                    </div>
+                    <div class="totalPrice">
+                        30.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+            <h3>TỔNG: 70.000 VNĐ</h3>
+            <button class="btn" id="thanhtoan-giohang">THANH TOÁN</button>
+            
+        </form>
+    
+    </header>
+
+        <!-- =========== TRANG CHỦ ===========-->
+        
+
+    <section class="trangchu" id="menu"> 
+
+        <div class="swiper home-slider">
+
+            <div class="swiper-wrapper wrapper">
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>NHỮNG MÓN ĐẶC BIỆT CỦA CHÚNG TÔI</span>
+                        <h3>COFFEE</h3>
+                        <p>Nhiều người, không chịu được vị đắng của cà phê nên thường bỏ đường hoặc sữa cho bớt đắng. Tôi không cho đường hay sữa vào cà phê bởi tôi biết: phải nếm trải qua cay đắng mới cảm nhận được ngọt ngào đến lịm người. Cho dù vẫn tiếp tục phải uống cà phê đắng nhưng tôi vẫn không nản lòng vì dư vị ngọt ngào của nó.</p>
+                        <a href="#" class="btn">ĐẶT NGAY</a>
+                    </div>
+                    <div class="image">
+                        <img src="Image/slider/slider1.png" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>NHỮNG MÓN ĐẶC BIỆT CỦA CHÚNG TÔI</span>
+                        <h3>PIZZA HẢI SẢN</h3>
+                        <p>Tôm, cua, mực và nghêu với sốt Marinara</p>
+                        <a href="#" class="btn">ĐẶT NGAY</a>
+                    </div>
+                    <div class="image">
+                        <img src="Image/slider/slider2.png" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>NHỮNG MÓN ĐẶC BIỆT CỦA CHÚNG TÔI</span>
+                        <h3>BÁNH MÌ</h3>
+                        <p></p>
+                        <a href="#" class="btn">ĐẶT NGAY</a>
+                    </div>
+                    <div class="image">
+                        <img src="Image/slider/slider3.png" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>NHỮNG MÓN ĐẶC BIỆT CỦA CHÚNG TÔI</span>
+                        <h3>BÁNH GẤU CHOCO</h3>
+                        <p></p>
+                        <a href="#" class="btn">ĐẶT NGAY</a>
+                    </div>
+                    <div class="image">
+                        <img src="Image/slider/slider4.png" alt="">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+         
+    </section>
+<!-- =========== MENU ===========-->
+
+<section class="menu" id="menu">
+         <!-- Bakery -->
+         <div class="bakery" id="bakery">
+            <h3 class="sub-heading">THỰC ĐƠN</h3>
+            <h1 class="heading">BAKERY</h1>
+            <div class="box-container">
+                <div class="box">
+                    <div class="image">
+                        <a href="ctsp_banh_1.html"><img src="Image/banhmi.png" alt=""></a>
+                        <a href="#" class="fas fa-heart"></a>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h3>Bánh Mì</h3>
+                        <p></p>
+                        <a href="#" class="btn">THÊM VÀO GIỎ HÀNG</a>
+                        <span class="price">25.000 VNĐ</span>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <a href="ctsp_banh_2.html"><img src="Image/banhgau.png" alt=""></a>
+                        <a href="#" class="fas fa-heart"></a>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h3>Bánh Gấu  Choco </h3>
+                        <p></p>
+                        <a href="#" class="btn">THÊM VÀO GIỎ HÀNG</a>
+                        <span class="price">35.000 VNĐ</span>
+                    </div>
+                </div>
+           
+
+                <div class="box">
+                    <div class="image">
+                        <a href="ctsp_banh_3.html"><img src="Image/chocobuttercroissant.jpg" alt=""></a>
+                        <a href="#" class="fas fa-heart"></a>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h3>Butter Chocolate Croissant 30g</h3>
+                        <p></p>
+                        <a href="#" class="btn">THÊM VÀO GIỎ HÀNG</a>
+                        <span class="price">22.000 VNĐ</span>
+                    </div>
+                </div>
+
+                
+
+                <div class="box">
+                    <div class="image">
+                        <a href="ctsp_banh_4.html"><img src="Image/hamberger_mini.jpg" alt=""></a>
+                        <a href="#" class="fas fa-heart"></a>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h3>Hamburger Mini</h3>
+                        <p></p>
+                        <a href="#" class="btn">THÊM VÀO GIỎ HÀNG</a>
+                        <span class="price">30.000 VNĐ</span>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                        <a href="ctsp_banh_5.html"><img src="Image/passionpannacotta.png" alt=""></a>
+                        <a href="#" class="fas fa-heart"></a>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h3>Passion Panna Cotta</h3>
+                        <p></p>
+                        <a href="#" class="btn">THÊM VÀO GIỎ HÀNG</a>
+                        <span class="price">35.000 VNĐ</span>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="image">
+                       <a href="ctsp_banh_6.html"> <img src="Image/tiramisumini.png" alt=""></a>
+                        <a href="#" class="fas fa-heart"></a>
+                    </div>
+                    <div class="content">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <h3>Tiramisu Mini</h3>
+                        <p></p>
+                        <a href="#" class="btn">THÊM VÀO GIỎ HÀNG</a>
+                        <span class="price">35.000 VNĐ</span>
+                    </div>
+                </div>
+            </div>
+</section>
+     
+
+<!-- =========== FOOTER ===========-->
+
+ <!-- Footer section starts -->
+
+ <section class="footer">
+
+    <div class="box-container">
+        <div class="box box1">
+            <a href="trangchu.html"><img src="Image/logo/logo_nau.PNG" alt=""></a>
+            <p><b>Địa chỉ:</b> Thị trấn Óc Eo, huyện Thoại Sơn, tỉnh An Giang</p>
+        </div>
+
+        <div class="box">
+            <h3>Thông tin liên hệ</h3>
+            <a href="#">086-999-6643</a>
+            <a href="#">0336-448-199</a>
+            <a href="#">hiotfhouse@gmail.com</a>
+            <a href="#">madotrieuthien@gmail.com</a>
+
+        </div>
+
+        <div class="box3">
+            <h3></h3>
+            <a href="https://www.facebook.com/profile.php?id=100076149965049" class="fa-brands fa-facebook"></a>
+            <a href="https://www.instagram.com/madotrieuthien/?fbclid=IwAR1LLuh9raQV3SaDfv72T77Hlv5RDY0u2uAaUQQCQzNUAJypApeWIwsmRp0" class="fa-brands fa-instagram"></a>
+            <a href="https://www.youtube.com/channel/UC9N1bzrtFq7BMeNtl37vlxQ" class="fa-brands fa-youtube"></a>
+            <a href="https://www.tiktok.com/@madotrieuthien" class="fa-brands fa-tiktok"></a>
+            <div class="email">
+                <h3>Đăng ký nhận tin khuyến mãi</h3>
+                <input type="email" placeholder="Nhập địa chỉ email" id="email-khuyenmai">
+                <input type="submit" value="Gửi" class="box-btn" onclick="return KiemTraNhanKhuyenMai ()">
+                <p id="message-khuyenmai"></p>
+            </div>
+        </div>
+      
+
+    </div>
+
+    <div class="credit">Copyright &#169; 2024 by <span>madotrieuthien</span></div>
+
+</section>
+
+<!-- Footer section ends -->
+                
+
+
+
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- custom js file link -->
+        <script src="Script/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIOTF HOUSE</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="Script/style.css">
+
+    <style>
+        /* ĐIỀU KHOẢN */
+    .dieukhoan
+    {
+        margin-top: 18rem;
+    }
+    .dieukhoan h1
+    {
+        font-size: 2rem;
+        text-align: center;
+    }
+    .dieukhoan h3,
+    .dieukhoan p
+    {
+        margin-left: 15rem;
+        line-height: 5rem;
+        font-size: 1.5rem;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="sukien">
+            <h1>MUA 1 TẶNG 1 CÒN: <span id="countdown"></h1>
+        </div>
+        
+        <a href="#" class="logo">
+            <img src="Image/logo/logo_den.PNG" alt="">
+        </a>
+       
+
+        <nav class="navbar">
+            <ul>
+                <li><a class="active" href="trangchu.html">TRANG CHỦ</a></li>
+                <li><a href="#banchay">BÁN CHẠY</a></li>
+                <li class="dropdown"><a  href="menu_thucuong.html" class="dropmenu">THỰC ĐƠN</a>
+                    <div class="dropdown-content">
+                        <a href="menu_thucuong.html">THỨC UỐNG</a>
+                        <a href="menu_bakery.html">BAKERY</a>
+                        <a href="menu_pizza.html">PIZZA</a>
+                    </div>
+                </li>
+                <li><a href="datban.html">ĐẶT BÀN</a></li>
+                <li><a href="vechungtoi.html">VỀ CHÚNG TÔI</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="#" class="fas fa-user" id="login-btn"></a>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart" id="shopping-cart"></a>
+            <i class="fas fa-bars" id="menu-bars"></i>
+
+        </div>
+
+        <!-- THANH TÌM KIẾM -->
+        <form action="" class="search-form">    
+            <input type="search" id="search-box" class="box" placeholder="Tìm kiếm...">
+            <label for="search-box" class="fas fa-search"></label> 
+        </form> 
+
+        <!-- ĐĂNG NHẬP -->
+        <form action="" class="login-form"> 
+            <h3>ĐĂNG NHẬP</h3>   
+            <input type="tel"  class="box" id="tel-dn" placeholder="Số điện thoại">
+            <input type="password"  class="box" id="password-dn" placeholder="Mật khẩu">
+            <p>Quên mật khẩu? <a href="#quenmatkhau" id="show-qmk"> Đặt lại mật khẩu </a></p>
+            <p>Bạn chưa có tài khoản? <a href="#dangky" id="show-dangky"> Đăng ký </a></p>
+            <input type="submit" value="Đăng nhập" class="btn" onclick="return KiemtraThongTinDangNhap()">
+        </form> 
+
+        <!-- ĐĂNG KÝ -->
+        <form action="" class="dangky" id="dangky">
+            <i class="fa-solid fa-xmark" id="fa-xmark_DK"></i>
+            <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
+            
+            <input type="text" id="username-dk" name="username-dk" required placeholder="Họ và tên">
+
+            <!-- <select id="gender" name="gender" placeholder="Giới tính:">
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+                <option value="other">Khác</option>
+            </select> -->
+            <input type="email-dk" id="email-dk" name="email-dk" required placeholder="Địa chỉ email">
+            <input type="tel" id="tel-dk" name="tel-dk" required placeholder="Số điện thoại">
+            <input type="password-dk" id="password-dk" name="password-dk" required placeholder="Nhập mật khẩu">
+            <input type="password1-dk" id="password1-dk" name="password1-dk" required placeholder="Nhập lại mật khẩu">
+            <div class="dieukhoan">
+                <input type="checkbox" id="checkboxDk1"><label>Tôi đồng ý với các điều khoản của <a href="dieukhoan.html">HIOTF HOUSE</a></label>
+            </div>
+            <button type="submit" class="btn" onclick="return KiemTraThongTinDangKy()">Đăng ký</button>
+        </form>
+        <!-- QUEN MAT KHAU -->
+        <form action="" class="quenmatkhau" id="quenmatkhau">
+            <i class="fa-solid fa-xmark" id="fa-xmark_QMK"></i>
+            <h3>LẤY LẠI MẬT KHẨU</h3>
+            <p>Chúng tôi sẽ gửi mật khẩu mới cho số điện thoại bên dưới</p>
+            <input type="tel-qmk" name="" id="tel-qmk" placeholder="Số điện thoại bạn đã đăng ký">
+            <button type="submit" class="btn" onclick="return KiemTraThongTinDatLaiMatKhau()">Đăng ký</button>
+        </form>
+
+
+
+
+        <!-- GIỎ HÀNG -->
+        <form action="" class="giohang" id="giohang">
+            <h3>GIỎ HÀNG</h3>
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/banhmi.png" alt="">
+                    </div>
+                    <div class="name">
+                        BÁNH MÌ
+                    </div>
+                    <div class="totalPrice">
+                        25.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/cf_den.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Cà Phê Đen
+                    </div>
+                    <div class="totalPrice">
+                        15.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/hamberger_mini.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Hamburger mini
+                    </div>
+                    <div class="totalPrice">
+                        30.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+            <h3>TỔNG: 70.000 VNĐ</h3>
+            <button class="btn" id="thanhtoan-giohang">THANH TOÁN</button>
+            
+        </form>
+    
+    </header>
+
+
+    <section class="dieukhoan" >
+        <h1>-------------- ĐIỀU KHOẢN THÀNH VIÊN TIÊU BIỂU CỦA NHÀ HÀNG HIOTF HOUSE --------------</h1>
+        <br>
+        <br>
+        <h3>1.Thành viên có trách nhiệm cung cấp thông tin chính xác và đầy đủ:</h3>
+        <p>Thành viên cần cung cấp thông tin cá nhân chính xác và không được sử dụng thông tin giả mạo khi đăng ký hoặc sử dụng dịch vụ của nhà hàng HIOTF HOUSE.</p>
+        <h3>2.Bảo mật thông tin cá nhân:</h3>
+        <p>Nhà hàng HIOTF HOUSE cam kết bảo mật thông tin cá nhân của thành viên và không tiết lộ thông tin cho bên thứ ba mà không có sự đồng ý của thành viên.</p>
+        <h3>3.Tuân thủ quy định và điều kiện sử dụng:</h3>
+        <p>Thành viên cần tuân thủ quy định và điều kiện sử dụng của nhà hàng HIOTF HOUSE khi sử dụng dịch vụ của họ.</p>
+        <h3>4.Cấm hành vi gây rối và quấy rối:</h3>
+        <p>Thành viên không được thực hiện các hành vi gây rối hoặc quấy rối đến nhân viên hoặc thành viên khác của nhà hàng HIOTF HOUSE.</p>
+        <h3>5.Sử dụng hợp lý và có trách nhiệm:</h3>
+        <p>Thành viên cần sử dụng dịch vụ của nhà hàng HIOTF HOUSE một cách hợp lý và có trách nhiệm, không sử dụng để vi phạm pháp luật hoặc gây ảnh hưởng đến uy tín của nhà hàng.</p>
+        <h3>6.Bảo vệ tài sản của nhà hàng:</h3>
+        <p>Thành viên cần bảo vệ tài sản của nhà hàng HIOTF HOUSE và không được phá hoại, đánh cắp hoặc làm hại đến tài sản của nhà hàng.</p>
+        <h3>7.Thanh toán đúng hạn:</h3>
+        <p>Thành viên cần thanh toán đúng hạn và đầy đủ các khoản phí và chi phí liên quan đến việc sử dụng dịch vụ của nhà hàng HIOTF HOUSE.</p>
+        <h3>8.Tuân thủ quy định về pháp luật:</h3>
+        <p>Thành viên cần tuân thủ mọi quy định của pháp luật liên quan đến việc sử dụng dịch vụ của nhà hàng HIOTF HOUSE.</p>
+        <h3>9.Chấp nhận điều chỉnh và cập nhật:</h3>
+        <p>Thành viên chấp nhận và đồng ý với việc nhà hàng HIOTF HOUSE có thể điều chỉnh và cập nhật các điều khoản và điều kiện của hợp đồng thành viên theo thời gian.</p>
+        <h3>10.Hủy bỏ và chấm dứt thành viên:</h3>
+        <p>Nhà hàng HIOTF HOUSE có quyền hủy bỏ hoặc chấm dứt tư cách thành viên nếu thành viên vi phạm các điều khoản và điều kiện của hợp đồng thành viên.</p>
+        
+
+    </section>
+  
+    
+    
+<!-- =========== FOOTER ===========-->
+
+ <!-- Footer section starts -->
+
+ <section class="footer">
+
+    <div class="box-container">
+        <div class="box box1">
+            <a href="trangchu.html"><img src="Image/logo/logo_nau.PNG" alt=""></a>
+            <p><b>Địa chỉ:</b> Thị trấn Óc Eo, huyện Thoại Sơn, tỉnh An Giang</p>
+        </div>
+
+        <div class="box">
+            <h3>Thông tin liên hệ</h3>
+            <a href="#">086-999-6643</a>
+            <a href="#">0336-448-199</a>
+            <a href="#">hiotfhouse@gmail.com</a>
+            <a href="#">madotrieuthien@gmail.com</a>
+
+        </div>
+
+        <div class="box3">
+            <h3></h3>
+            <a href="https://www.facebook.com/profile.php?id=100076149965049" class="fa-brands fa-facebook"></a>
+            <a href="https://www.instagram.com/madotrieuthien/?fbclid=IwAR1LLuh9raQV3SaDfv72T77Hlv5RDY0u2uAaUQQCQzNUAJypApeWIwsmRp0" class="fa-brands fa-instagram"></a>
+            <a href="https://www.youtube.com/channel/UC9N1bzrtFq7BMeNtl37vlxQ" class="fa-brands fa-youtube"></a>
+            <a href="https://www.tiktok.com/@madotrieuthien" class="fa-brands fa-tiktok"></a>
+            <div class="email">
+                <h3>Đăng ký nhận tin khuyến mãi</h3>
+                <input type="email" placeholder="Nhập địa chỉ email" id="email-khuyenmai">
+                <input type="submit" value="Gửi" class="box-btn" onclick="return KiemTraNhanKhuyenMai ()">
+                <p id="message-khuyenmai"></p>
+            </div>
+        </div>
+      
+
+    </div>
+
+    <div class="credit">Copyright &#169; 2024 by <span>madotrieuthien</span></div>
+
+</section>
+
+<!-- Footer section ends -->
+                
+
+
+
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- custom js file link -->
+        <script src="Script/script.js"></script>
+
+</body>
+</html>

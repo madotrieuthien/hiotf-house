@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIOTF HOUSE</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="Script/style.css">
+
+
+
+    <style>
+.calendar {
+    border: 1px solid #206AB5;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    position: absolute;
+    right: 5rem;
+    top: 85rem;
+  }
+  
+  .calendar table {
+    width: 100%;
+  }
+  
+  .calendar table tr td.monthyear {
+    background-color: rgb(135, 244, 168);
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFF;
+    border: 1px solid #666;
+  }
+  
+  .calendar table tr.weektitle td {
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #666;
+    background-color: #CCF;
+  }
+  
+  .calendar table tr td.weekday {
+    text-align: center;
+    border: 1px solid #666;
+  }
+  
+    </style>
+<script>
+    function KiemTraDatBan ()
+{       
+    // Kiểm tra Họ và Tên
+    var hoTen = document.getElementById("hoten-DB");
+    
+    if(hoTen.value == '')
+    {
+    alert("Vui lòng điền Họ và Tên của bạn")
+    hoTen.focus();
+    return false;
+    }
+
+    // Kiểm tra số điện thoại
+    var sodienthoai = document.getElementById("tel-DB");
+    
+    if(sodienthoai.value == '')
+    {
+    alert("Không được bỏ trống số điện thoại")
+    sodienthoai.focus();
+    return false;
+    }
+
+    // Kiểm tra email
+    var email = document.getElementById("email-DB");
+    re=/\w+@\w+\.\w+/;
+    if (email.value==""){
+    alert("Bạn chưa nhập địa chỉ Email")
+    email.focus();
+    return false;
+    }
+    else
+    if(re.test(email.value)==false){
+    alert("Email bạn nhập không đúng định dạng")
+    email.focus();
+    return false;
+    }
+
+    // Kiểm tra Năm sinh
+
+    var yearOfBirthInput = document.getElementById("namsinh-DB").value;
+    var currentYear = new Date().getFullYear();
+    var age = currentYear - yearOfBirthInput;
+    if(yearOfBirthInput=='')
+    {
+        alert("Năm sinh không được bỏ trống ạ")
+        yearOfBirthInput.focus;
+        return false;
+    }
+    // Kiểm tra xem tuổi có phù hợp để đặt bàn hay không
+    if (age > 90) 
+    {
+        alert("Xin lỗi, bạn quá già để đặt bàn.")
+        yearOfBirthInput.focus;
+        return false;
+    } 
+    else if (age < 16) 
+    {
+        alert("Xin lỗi, bạn chưa đủ tuổi để đặt bàn.")
+        yearOfBirthInput.focus;
+        return false;
+    } 
+
+    var soNguoi = document.getElementById("songuoi-DB").value;
+
+    if(soNguoi=='')
+    {
+        alert("Chúng tôi cần biết bạn đi bao nhiêu người")
+        soNguoi.focus;
+        return false;
+    }
+
+    if(soNguoi > 30)
+    {
+        alert("Xin lỗi, không gian quán không đáp ứng đủ chổ cho bạn và gia đình")
+        soNguoi.focus;
+        return false;
+    }
+
+    // Kiểm tra Ngày đặt bàn
+    var bookingDateTimeInput = document.getElementById("ngay-DB").value;
+
+    // Kiểm tra xem ngày và giờ đã nhập hay chưa
+    if (bookingDateTimeInput === "") {
+        alert("Chúng tôi cần biết khi nào bạn đến quán")
+        bookingDateTimeInput.focus;
+        return false;
+    }
+
+    // Tạo đối tượng Date từ ngày và giờ nhập vào
+    var bookingDateTime = new Date(bookingDateTimeInput);
+    var currentDateTime = new Date();
+
+    // Kiểm tra xem ngày nhập vào có phải là tương lai hay không
+    if (bookingDateTime < currentDateTime) {
+        alert("Vui lòng không đặt bàn ở quá khứ. Chúng ta sống ở hiện tại.")
+        bookingDateTimeInput.focus;
+        return false;
+    }
+
+    // Kiểm tra xem ngày nhập vào cách hiện tại ít nhất 2 tiếng
+    var minTimeDifference = 2 * 60 * 60 * 1000; // 2 tiếng (tính bằng mili giây)
+    var timeDifference = bookingDateTime.getTime() - currentDateTime.getTime();
+
+    if (timeDifference < minTimeDifference) {
+        alert("Vui lòng đặt bàn ít nhất 2 tiếng sau thời điểm hiện tại. Chúng tôi cần thời gian chuẩn bị")
+        bookingDateTimeInput.focus;
+        return false;
+    }
+
+
+    // Kiểm tra Yêu cầu:
+    var yeucau = document.getElementById("yeucau-DB");
+    
+    if(yeucau.value == '')
+    {
+    alert("Nếu bạn không có yêu câu vui lòng ghi KHÔNG")
+    yeucau.focus();
+    return false;
+    }
+
+    // Kiểm tra Yêu cầu:
+    var ghichu = document.getElementById("ghichu-DB");
+    
+    if(ghichu.value == '')
+    {
+    alert("Nếu bạn không có lưu ý vui lòng ghi KHÔNG")
+    ghichu.focus();
+    return false;
+    }
+
+    // Thành công đặt bàn
+
+    var bookingDateTimeInput = document.getElementById("ngay-DB").value;
+
+    // Đảm bảo rằng giá trị đầu vào đúng định dạng cho đối tượng Date
+    // Ví dụ: "2024-03-24T12:00:00"
+    var bookingDateTime1 = new Date(bookingDateTimeInput);
+
+    // Lấy ngày, tháng, năm, giờ, phút và giây từ đối tượng Date
+    var day = bookingDateTime1.getDate();
+    var month = bookingDateTime1.getMonth() + 1; // Tháng bắt đầu từ 0 nên cần cộng thêm 1
+    var year = bookingDateTime1.getFullYear();
+    var hours = bookingDateTime1.getHours();
+    var minutes = bookingDateTime1.getMinutes();
+    var seconds = bookingDateTime1.getSeconds();
+
+    // Đảm bảo rằng các giờ, phút và giây luôn hiển thị 2 chữ số
+    hours = (hours < 10 ? "0" : "") + hours;
+    minutes = (minutes < 10 ? "0" : "") + minutes;
+    seconds = (seconds < 10 ? "0" : "") + seconds;
+
+    // Hiển thị thông báo với ngày, giờ và giây đặt bàn
+    alert("Chúc mừng đã đặt bàn thành công! Hẹn quý khách vào ngày " + day + "/" + month + "/" + year + " vào lúc " + hours + ":" + minutes + ":" + seconds);
+    return true;
+
+
+}
+</script>
+
+
+</head>
+<body>
+
+  
+    
+    <!-- =========== HEADER ===========-->
+    <header>
+        <div class="sukien">
+            <h1>MUA 1 TẶNG 1 CÒN: <span id="countdown"></h1>
+        </div>
+        
+        <a href="#" class="logo">
+            <img src="Image/logo/logo_den.PNG" alt="">
+        </a>
+       
+
+        <nav class="navbar">
+            <ul>
+                <li><a class="active" href="trangchu.html">TRANG CHỦ</a></li>
+                <li><a href="banchay.html">BÁN CHẠY</a></li>
+                <li class="dropdown"><a  href="menu_thucuong.html" class="dropmenu">THỰC ĐƠN</a>
+                    <div class="dropdown-content">
+                        <a href="menu_thucuong.html">THỨC UỐNG</a>
+                        <a href="menu_bakery.html">BAKERY</a>
+                        <a href="menu_pizza.html">PIZZA</a>
+                    </div>
+                </li>
+                <li><a href="datban.html">ĐẶT BÀN</a></li>
+                <li><a href="vechungtoi.html">VỀ CHÚNG TÔI</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="#" class="fas fa-user" id="login-btn"></a>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart" id="shopping-cart"></a>
+            <i class="fas fa-bars" id="menu-bars"></i>
+
+        </div>
+
+        <!-- THANH TÌM KIẾM -->
+        <form action="" class="search-form">    
+            <input type="search" id="search-box" class="box" placeholder="Tìm kiếm...">
+            <label for="search-box" class="fas fa-search"></label> 
+        </form> 
+
+        <!-- ĐĂNG NHẬP -->
+        <form action="" class="login-form"> 
+            <h3>ĐĂNG NHẬP</h3>   
+            <input type="tel"  class="box" id="tel-dn" placeholder="Số điện thoại">
+            <input type="password"  class="box" id="password-dn" placeholder="Mật khẩu">
+            <p>Quên mật khẩu? <a href="#quenmatkhau" id="show-qmk"> Đặt lại mật khẩu </a></p>
+            <p>Bạn chưa có tài khoản? <a href="#dangky" id="show-dangky"> Đăng ký </a></p>
+            <input type="submit" value="Đăng nhập" class="btn" onclick="return KiemtraThongTinDangNhap()">
+        </form> 
+
+        <!-- ĐĂNG KÝ -->
+        <form action="" class="dangky" id="dangky">
+            <i class="fa-solid fa-xmark" id="fa-xmark_DK"></i>
+            <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
+            
+            <input type="text" id="username-dk" name="username-dk" required placeholder="Họ và tên">
+
+            <!-- <select id="gender" name="gender" placeholder="Giới tính:">
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+                <option value="other">Khác</option>
+            </select> -->
+            <input type="email-dk" id="email-dk" name="email-dk" required placeholder="Địa chỉ email">
+            <input type="tel" id="tel-dk" name="tel-dk" required placeholder="Số điện thoại">
+            <input type="password-dk" id="password-dk" name="password-dk" required placeholder="Nhập mật khẩu">
+            <input type="password1-dk" id="password1-dk" name="password1-dk" required placeholder="Nhập lại mật khẩu">
+            <div class="dieukhoan">
+                <input type="checkbox" id="checkboxDk1"><label>Tôi đồng ý với các điều khoản của <a href="dieukhoan.html">HIOTF HOUSE</a></label>
+            </div>
+            <button type="submit" class="btn" onclick="return KiemTraThongTinDangKy()">Đăng ký</button>
+        </form>
+        <!-- QUEN MAT KHAU -->
+        <form action="" class="quenmatkhau" id="quenmatkhau">
+            <i class="fa-solid fa-xmark" id="fa-xmark_QMK"></i>
+            <h3>LẤY LẠI MẬT KHẨU</h3>
+            <p>Chúng tôi sẽ gửi mật khẩu mới cho số điện thoại bên dưới</p>
+            <input type="tel-qmk" name="" id="tel-qmk" placeholder="Số điện thoại bạn đã đăng ký">
+            <button type="submit" class="btn" onclick="return KiemTraThongTinDatLaiMatKhau()">Đăng ký</button>
+        </form>
+
+
+
+
+        <!-- GIỎ HÀNG -->
+        <form action="" class="giohang" id="giohang">
+            <h3>GIỎ HÀNG</h3>
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/banhmi.png" alt="">
+                    </div>
+                    <div class="name">
+                        BÁNH MÌ
+                    </div>
+                    <div class="totalPrice">
+                        25.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/cf_den.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Cà Phê Đen
+                    </div>
+                    <div class="totalPrice">
+                        15.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/hamberger_mini.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Hamburger mini
+                    </div>
+                    <div class="totalPrice">
+                        30.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+            <h3>TỔNG: 70.000 VNĐ</h3>
+            <button class="btn" id="thanhtoan-giohang">THANH TOÁN</button>
+            
+        </form>
+    
+    </header>
+
+        <!-- =========== TRANG CHỦ ===========-->
+        
+
+    <section class="trangchu" id="datban"> 
+
+        <div class="swiper home-slider">
+
+            <div class="swiper-wrapper wrapper">
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>NHỮNG MÓN ĐẶC BIỆT CỦA CHÚNG TÔI</span>
+                        <h3>COFFEE</h3>
+                        <p>Nhiều người, không chịu được vị đắng của cà phê nên thường bỏ đường hoặc sữa cho bớt đắng. Tôi không cho đường hay sữa vào cà phê bởi tôi biết: phải nếm trải qua cay đắng mới cảm nhận được ngọt ngào đến lịm người. Cho dù vẫn tiếp tục phải uống cà phê đắng nhưng tôi vẫn không nản lòng vì dư vị ngọt ngào của nó.</p>
+                        <a href="#" class="btn">ĐẶT NGAY</a>
+                    </div>
+                    <div class="image">
+                        <img src="Image/slider/slider1.png" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>NHỮNG MÓN ĐẶC BIỆT CỦA CHÚNG TÔI</span>
+                        <h3>PIZZA HẢI SẢN</h3>
+                        <p>Tôm, cua, mực và nghêu với sốt Marinara</p>
+                        <a href="#" class="btn">ĐẶT NGAY</a>
+                    </div>
+                    <div class="image">
+                        <img src="Image/slider/slider2.png" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>NHỮNG MÓN ĐẶC BIỆT CỦA CHÚNG TÔI</span>
+                        <h3>BÁNH MÌ</h3>
+                        <p></p>
+                        <a href="#" class="btn">ĐẶT NGAY</a>
+                    </div>
+                    <div class="image">
+                        <img src="Image/slider/slider3.png" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="content">
+                        <span>NHỮNG MÓN ĐẶC BIỆT CỦA CHÚNG TÔI</span>
+                        <h3>BÁNH GẤU CHOCO</h3>
+                        <p></p>
+                        <a href="#" class="btn">ĐẶT NGAY</a>
+                    </div>
+                    <div class="image">
+                        <img src="Image/slider/slider4.png" alt="">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+         
+    </section>
+
+    
+
+
+    <!-- =========== ĐẶT BÀN ===========-->
+
+     <!-- Order section starts -->
+
+     <section class="datban" id="datban">
+
+        <h3 class="sub-heading">ĐẶT BÀN</h3>
+        <h1 class="heading">THÔNG TIN NGƯỜI ĐẶT BÀN</h1>
+
+        <form action="">
+
+            <div class="inputBox">
+                <div class="input">
+                    <span>Họ và tên:</span>
+                    <input type="text" placeholder="Họ và tên của bạn" id="hoten-DB">
+                </div>
+                <div class="input">
+                    <span>Số điện thoại:</span>
+                    <input type="tel" placeholder="Số điện thoại của bạn" id="tel-DB">
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <div class="input">
+                    <span>Email:</span>
+                    <input type="email" placeholder="Email của bạn " id="email-DB">
+                </div>
+                <div class="input">
+                    <span>Năm sinh:</span>
+                    <input type="number" placeholder="Năm sinh của bạn" id="namsinh-DB">
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <div class="input">
+                    <span>Số người:</span>
+                    <input type="number" placeholder="Bạn đặt bàn bao nhiêu người?" id="songuoi-DB">
+                </div>
+                <div class="input">
+                    <span>Ngày và thời gian nhận bàn:</span>
+                    <input type="datetime-local" id="ngay-DB">
+                </div>
+            </div>
+
+            <div class="inputBox">
+                <div class="input">
+                    <span>Món bạn yêu cầu chuẩn bị:</span>
+                    <textarea name="" placeholder="Nêu thực đơn bạn muốn" id="yeucau-DB" cols="30" rows="10" ></textarea>
+                </div>
+                <div class="input">
+                    <span>Ghi chú:</span>
+                    <textarea name="" placeholder="Bạn cần chúng tôi lưu ý gì?" id="ghichu-DB" cols="30" rows="10"></textarea>
+                </div>
+            </div>
+            <input type="submit" value="ĐẶT NGAY" class="btn" onclick="return KiemTraDatBan()">
+
+        </form>
+
+    </section>
+
+    <!-- Order section ends -->
+
+    <div class="calendar">
+        <div>
+            <h1 id="current-time" style="text-align: center; color:rgb(0, 253, 17);"></h1>
+        </div>
+        <script LANGUAGE="JavaScript"><!--Begin
+          var monthnames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          var linkcount = 0;
+      
+          function addlink(month, day, href) {
+            var entry = new Array(3);
+            entry[0] = month;
+            entry[1] = day;
+            entry[2] = href;
+            this[linkcount++] = entry;
+          }
+      
+          Array.prototype.addlink = addlink;
+          var linkdays = new Array();
+          var monthdays = new Array(12);
+          monthdays[0] = 31;
+          monthdays[1] = 28;
+          monthdays[2] = 31;
+          monthdays[3] = 30;
+          monthdays[4] = 31;
+          monthdays[5] = 30;
+          monthdays[6] = 31;
+          monthdays[7] = 31;
+          monthdays[8] = 30;
+          monthdays[9] = 31;
+          monthdays[10] = 30;
+          monthdays[11] = 31;
+      
+          var todayDate = new Date();
+          var thisday = todayDate.getDay();
+          var thismonth = todayDate.getMonth();
+          var thisdate = todayDate.getDate();
+          var thisyear = todayDate.getYear();
+          thisyear = thisyear % 100;
+          thisyear = ((thisyear < 50) ? (2000 + thisyear) : (1900 + thisyear));
+      
+          if (((thisyear % 4 == 0) && !(thisyear % 100 == 0)) || (thisyear % 400 == 0)) monthdays[1]++;
+      
+          var startspaces = thisdate;
+          while (startspaces > 7) startspaces -= 7;
+          startspaces = thisday - startspaces + 1;
+          if (startspaces < 0) startspaces += 7;
+      
+          document.write("<table>");
+          document.write("<tr><td colspan=7 class='monthyear'>" + monthnames[thismonth] + " " + thisyear + "</td></tr>");
+          document.write("<tr class='weektitle'>");
+          document.write("<td align=center>Sun</td>");
+          document.write("<td align=center>Mon</td>");
+          document.write("<td align=center>Tue</td>");
+          document.write("<td align=center>Wed</td>");
+          document.write("<td align=center>Thu</td>");
+          document.write("<td align=center>Fri</td>");
+          document.write("<td align=center>Sat</td>");
+          document.write("</tr>");
+          document.write("<tr>");
+          for (s = 0; s < startspaces; s++) {
+            document.write("<td> </td>");
+          }
+          var count = 1;
+          while (count <= monthdays[thismonth]) {
+            for (var b = startspaces; b < 7; b++) {
+              var linktrue = false;
+              document.write("<td class='weekday'>");
+              for (var c = 0; c < linkdays.length; c++) {
+                if (linkdays[c] != null) {
+                  if ((linkdays[c][0] == thismonth + 1) && (linkdays[c][1] == count)) {
+                    document.write("<a href=\"" + linkdays[c][2] + "\">");
+                    linktrue = true;
+                  }
+                }
+              }
+              if (count == thisdate) {
+                document.write("<font color='FF0000'><strong>");
+              }
+              if (count <= monthdays[thismonth]) {
+                document.write(count);
+              } else {
+                document.write(" ");
+              }
+              if (count == thisdate) {
+                document.write("</strong></font>");
+              }
+              if (linktrue) document.write("</a>");
+              document.write("</td>");
+              count++;
+            }
+            document.write("</tr>");
+            document.write("<tr>");
+            startspaces = 0;
+          }
+          document.write("</table>");
+        // End --></script>
+      </div>  
+</aside>
+
+<script>
+    function displayCurrentTime() {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+    
+        // Đảm bảo rằng các giờ, phút và giây luôn hiển thị 2 chữ số
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+        seconds = (seconds < 10 ? "0" : "") + seconds;
+    
+        var currentTimeString = hours + ":" + minutes + ":" + seconds;
+        document.getElementById("current-time").innerText = currentTimeString;
+    }
+    
+    // Gọi hàm displayCurrentTime mỗi giây để cập nhật giờ hiện tại
+    setInterval(displayCurrentTime, 1000);
+    </script>
+
+
+     
+
+<!-- =========== FOOTER ===========-->
+
+ <!-- Footer section starts -->
+
+ <section class="footer">
+
+    <div class="box-container">
+        <div class="box box1">
+            <a href="trangchu.html"><img src="Image/logo/logo_nau.PNG" alt=""></a>
+            <p><b>Địa chỉ:</b> Thị trấn Óc Eo, huyện Thoại Sơn, tỉnh An Giang</p>
+        </div>
+
+        <div class="box">
+            <h3>Thông tin liên hệ</h3>
+            <a href="#">086-999-6643</a>
+            <a href="#">0336-448-199</a>
+            <a href="#">hiotfhouse@gmail.com</a>
+            <a href="#">madotrieuthien@gmail.com</a>
+
+        </div>
+
+        <div class="box3">
+            <h3></h3>
+            <a href="https://www.facebook.com/profile.php?id=100076149965049" class="fa-brands fa-facebook"></a>
+            <a href="https://www.instagram.com/madotrieuthien/?fbclid=IwAR1LLuh9raQV3SaDfv72T77Hlv5RDY0u2uAaUQQCQzNUAJypApeWIwsmRp0" class="fa-brands fa-instagram"></a>
+            <a href="https://www.youtube.com/channel/UC9N1bzrtFq7BMeNtl37vlxQ" class="fa-brands fa-youtube"></a>
+            <a href="https://www.tiktok.com/@madotrieuthien" class="fa-brands fa-tiktok"></a>
+            <div class="email">
+                <h3>Đăng ký nhận tin khuyến mãi</h3>
+                <input type="email" placeholder="Nhập địa chỉ email" id="email-khuyenmai">
+                <input type="submit" value="Gửi" class="box-btn" onclick="return KiemTraNhanKhuyenMai ()">
+                <p id="message-khuyenmai"></p>
+            </div>
+        </div>
+      
+
+    </div>
+
+    <div class="credit">Copyright &#169; 2024 by <span>madotrieuthien</span></div>
+
+</section>
+
+<!-- Footer section ends -->
+                
+
+
+
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- custom js file link -->
+        <script src="Script/script.js"></script>
+
+</body>
+</html>

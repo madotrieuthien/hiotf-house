@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIOTF HOUSE</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <!-- font awesome cdn link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="Script/style.css">
+
+    <style>
+    body
+    {
+        background: #eee;
+    }
+        
+
+    .chitietsanpham
+    {
+        margin-top: 18rem;
+        width: 60rem;
+        border: .1rem solid rgb(0, 255, 13);
+        border-radius: 2rem;
+        margin-left: 25%;
+        margin-bottom: 2rem;
+        background: white;
+    }
+
+    .chitietsanpham table
+    {
+        margin: 2rem;
+    }
+
+     button a
+    {
+        color: #ffffff;
+    }
+
+    .chitietsanpham table h1
+    {
+        background: greenyellow;
+        height: 3rem;
+        text-align: center;
+        font-size: 3rem;
+        border-radius: 2rem;
+    }
+
+    .chitietsanpham button
+    {
+        width: 48%;
+        display: inline;
+        margin-left: .7rem;
+        margin-bottom: .5rem;
+    
+    }
+
+    .chitietsanpham img
+    {
+       margin-left: 30%;
+       height: 30rem;
+       padding: 1rem;
+    }
+
+    .chitietsanpham h3
+    {
+        text-align: center;
+        font-size: 3rem;
+        padding: 1rem;
+    }
+
+    .chitietsanpham p
+    {
+        font-size: 1.5rem;
+    }
+
+    .chitietsanpham p b
+    {
+        font-size: 2rem;
+    }
+
+
+    </style>
+</head>
+<body>
+
+  
+    
+    <!-- =========== HEADER ===========-->
+    <header>
+        <div class="sukien">
+            <h1>MUA 1 TẶNG 1 CÒN: <span id="countdown"></h1>
+        </div>
+        
+        <a href="#" class="logo">
+            <img src="Image/logo/logo_den.PNG" alt="">
+        </a>
+       
+
+        <nav class="navbar">
+            <ul>
+                <li><a class="active" href="trangchu.html">TRANG CHỦ</a></li>
+                <li><a href="banchay.html">BÁN CHẠY</a></li>
+                <li class="dropdown"><a  href="menu_thucuong.html" class="dropmenu">THỰC ĐƠN</a>
+                    <div class="dropdown-content">
+                        <a href="menu_thucuong.html">THỨC UỐNG</a>
+                        <a href="menu_bakery.html">BAKERY</a>
+                        <a href="menu_pizza.html">PIZZA</a>
+                    </div>
+                </li>
+                <li><a href="datban.html">ĐẶT BÀN</a></li>
+                <li><a href="vechungtoi.html">VỀ CHÚNG TÔI</a></li>
+            </ul>
+        </nav>
+
+        <div class="icons">
+            <i class="fas fa-search" id="search-icon"></i>
+            <a href="#" class="fas fa-user" id="login-btn"></a>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-shopping-cart" id="shopping-cart"></a>
+            <i class="fas fa-bars" id="menu-bars"></i>
+
+        </div>
+
+        <!-- THANH TÌM KIẾM -->
+        <form action="" class="search-form">    
+            <input type="search" id="search-box" class="box" placeholder="Tìm kiếm...">
+            <label for="search-box" class="fas fa-search"></label> 
+        </form> 
+
+        <!-- ĐĂNG NHẬP -->
+        <form action="" class="login-form"> 
+            <h3>ĐĂNG NHẬP</h3>   
+            <input type="tel"  class="box" id="tel-dn" placeholder="Số điện thoại">
+            <input type="password"  class="box" id="password-dn" placeholder="Mật khẩu">
+            <p>Quên mật khẩu? <a href="#quenmatkhau" id="show-qmk"> Đặt lại mật khẩu </a></p>
+            <p>Bạn chưa có tài khoản? <a href="#dangky" id="show-dangky"> Đăng ký </a></p>
+            <input type="submit" value="Đăng nhập" class="btn" onclick="return KiemtraThongTinDangNhap()">
+        </form> 
+
+        <!-- ĐĂNG KÝ -->
+        <form action="" class="dangky" id="dangky">
+            <i class="fa-solid fa-xmark" id="fa-xmark_DK"></i>
+            <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
+            
+            <input type="text" id="username-dk" name="username-dk" required placeholder="Họ và tên">
+
+            <!-- <select id="gender" name="gender" placeholder="Giới tính:">
+                <option value="male">Nam</option>
+                <option value="female">Nữ</option>
+                <option value="other">Khác</option>
+            </select> -->
+            <input type="email-dk" id="email-dk" name="email-dk" required placeholder="Địa chỉ email">
+            <input type="tel" id="tel-dk" name="tel-dk" required placeholder="Số điện thoại">
+            <input type="password-dk" id="password-dk" name="password-dk" required placeholder="Nhập mật khẩu">
+            <input type="password1-dk" id="password1-dk" name="password1-dk" required placeholder="Nhập lại mật khẩu">
+            <div class="dieukhoan">
+                <input type="checkbox" id="checkboxDk1"><label>Tôi đồng ý với các điều khoản của <a href="dieukhoan.html">HIOTF HOUSE</a></label>
+            </div>
+            <button type="submit" class="btn" onclick="return KiemTraThongTinDangKy()">Đăng ký</button>
+        </form>
+        <!-- QUEN MAT KHAU -->
+        <form action="" class="quenmatkhau" id="quenmatkhau">
+            <i class="fa-solid fa-xmark" id="fa-xmark_QMK"></i>
+            <h3>LẤY LẠI MẬT KHẨU</h3>
+            <p>Chúng tôi sẽ gửi mật khẩu mới cho số điện thoại bên dưới</p>
+            <input type="tel-qmk" name="" id="tel-qmk" placeholder="Số điện thoại bạn đã đăng ký">
+            <button type="submit" class="btn" onclick="return KiemTraThongTinDatLaiMatKhau()">Đăng ký</button>
+        </form>
+
+
+
+
+        <!-- GIỎ HÀNG -->
+        <form action="" class="giohang" id="giohang">
+            <h3>GIỎ HÀNG</h3>
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/banhmi.png" alt="">
+                    </div>
+                    <div class="name">
+                        BÁNH MÌ
+                    </div>
+                    <div class="totalPrice">
+                        25.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/cf_den.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Cà Phê Đen
+                    </div>
+                    <div class="totalPrice">
+                        15.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="listCart">
+                <div class="item">
+                    <div class="image">
+                        <img src="Image/hamberger_mini.jpg" alt="">
+                    </div>
+                    <div class="name">
+                        Hamburger mini
+                    </div>
+                    <div class="totalPrice">
+                        30.000 VNĐ
+                    </div>
+                    <div class="quantity">
+                        <span class="minus">-</span>
+                        <span>1</span>
+                        <span class="plus">+</span>
+                    </div>
+                </div>
+            </div>
+            <h3>TỔNG: 70.000 VNĐ</h3>
+            <button class="btn" id="thanhtoan-giohang">THANH TOÁN</button>
+            
+        </form>
+    
+    </header>
+    <section class="chitiet" id="chitiet">
+        <form action="" class="chitietsanpham" id="chitietsanpham">
+            <table>
+                <tr><td><h1>CHI TIẾT THỨC UỐNG</h1></td></tr>
+                <tr><td><img src="Image/chanh_tuyet.jpg" alt=""></td></tr>
+        
+                <tr><td><h3>CHANH TUYẾT</h3></td></tr>
+                
+                <tr><td>
+                    
+                    <p><b>Nguyên liệu chính:</b> <br>
+                        <b>Chanh:</b>  Loại trái cây chua chua ngọt ngọt, tươi mát, thường là thành phần chính trong chanh tuyết. Chanh có thể được sử dụng dưới dạng nước cốt chanh, nước chanh tươi hoặc nước ép chanh. <br>
+                        <b>Đường: </b> Thường được sử dụng để làm ngọt cho chanh tuyết, nhưng có thể được thay thế bằng các loại đường thay thế như đường mía, đường hoa quả tự nhiên, hoặc các loại đường thấp calo.<br>
+                        <b>Các thành phần bổ sung:</b>
+                        <b>Nước:</b> Thường được sử dụng để làm loãng hỗ trợ cho việc pha chế chanh tuyết. <br>
+                        <b>Đá viên hoặc đá xay:</b> Được thêm vào để làm cho chanh tuyết lạnh và mát mẻ hơn, tạo cảm giác sảng khoái khi uống.<br>
+                        <b>Một số loại siro hoặc hương vị tự nhiên khác:</b> Có thể thêm vào để tạo ra các loại chanh tuyết có hương vị đa dạng như hương vị dâu, hương vị cam, hương vị bạc hà, vv. <br>
+                        <b>Bảo quản và thời hạn sử dụng:</b>
+                         Chanh tuyết thường được phục vụ ngay sau khi pha chế để tận hưởng hương vị và cảm giác tốt nhất.
+                        Trong trường hợp không tiêu thụ hết, có thể bảo quản trong tủ lạnh trong thời gian ngắn.
+                    </p>
+                </td></tr>
+                <tr><td style="font-size: 3rem;" colspan="2" align="right">Giá bán: <font color="red"><b>35,000 VNĐ</b></font></td></tr>
+            </table>
+           
+
+            <button type="button" class="btn" onclick="goBack()">QUAY LẠI</button>
+
+            <button type="submit" class="btn">MUA NGAY</button>
+            
+            
+        </form>
+    </section>
+    
+       
+<!-- =========== FOOTER ===========-->
+
+ <!-- Footer section starts -->
+
+ <section class="footer">
+
+    <div class="box-container">
+        <div class="box box1">
+            <a href="trangchu.html"><img src="Image/logo/logo_nau.PNG" alt=""></a>
+            <p><b>Địa chỉ:</b> Thị trấn Óc Eo, huyện Thoại Sơn, tỉnh An Giang</p>
+        </div>
+
+        <div class="box">
+            <h3>Thông tin liên hệ</h3>
+            <a href="#">086-999-6643</a>
+            <a href="#">0336-448-199</a>
+            <a href="#">hiotfhouse@gmail.com</a>
+            <a href="#">madotrieuthien@gmail.com</a>
+
+        </div>
+
+        <div class="box3">
+            <h3></h3>
+            <a href="https://www.facebook.com/profile.php?id=100076149965049" class="fa-brands fa-facebook"></a>
+            <a href="https://www.instagram.com/madotrieuthien/?fbclid=IwAR1LLuh9raQV3SaDfv72T77Hlv5RDY0u2uAaUQQCQzNUAJypApeWIwsmRp0" class="fa-brands fa-instagram"></a>
+            <a href="https://www.youtube.com/channel/UC9N1bzrtFq7BMeNtl37vlxQ" class="fa-brands fa-youtube"></a>
+            <a href="https://www.tiktok.com/@madotrieuthien" class="fa-brands fa-tiktok"></a>
+            <div class="email">
+                <h3>Đăng ký nhận tin khuyến mãi</h3>
+                <input type="email" placeholder="Nhập địa chỉ email" id="email-khuyenmai">
+                <input type="submit" value="Gửi" class="box-btn" onclick="return KiemTraNhanKhuyenMai ()">
+                <p id="message-khuyenmai"></p>
+            </div>
+        </div>
+      
+
+    </div>
+
+    <div class="credit">Copyright &#169; 2024 by <span>madotrieuthien</span></div>
+
+</section>
+
+<!-- Footer section ends -->
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+
+
+
+
+
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- custom js file link -->
+        <script src="Script/script.js"></script>
+
+</body>
+</html>
